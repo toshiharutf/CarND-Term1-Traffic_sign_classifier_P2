@@ -1,15 +1,10 @@
 #**Traffic Sign Recognition** 
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
-**Build a Traffic Sign Recognition Project**
+**Objectives**
 
-The goals / steps of this project are the following:
-* Load the data set (see below for links to the project data set)
+* Load the training, validation and test data sets
 * Explore, summarize and visualize the data set
 * Design, train and test a model architecture
 * Use the model to make predictions on new images
@@ -29,7 +24,21 @@ The goals / steps of this project are the following:
 [image8]: ./examples/placeholder.png "Traffic Sign 5"
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+
+### Data summary
+The dataset contains 43 classes of German traffic sign images, each of them sorted and labeled. Three sets are considered, for training, validation and testing. 
+The dataset was obtained from the *Institut für Neuroinformatik* from the **Ruhr Universität Bochum** 
+[Data set link](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset)
+
+
+Image data shape = (32, 32, 3)
+Number of classes = 43
+
+Number of training examples = 34799
+Number of validation samples = 4410
+Number of testing samples = 12630
+
+
 
 ---
 ###Writeup / README
