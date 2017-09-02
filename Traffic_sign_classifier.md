@@ -1,8 +1,11 @@
 #**Traffic Sign Recognition** 
 
 ---
+## Introduction
+In this project, a traffic sign classifier using a deep learning algorithm is implemented. The input image is first normalized and then feed through a deep neural network. This network consists of two convolutional, and three fully connected layers. Also, pooling and dropout are applied to the network in order to reduce the number of trainable variables and avoid overfitting the model.
 
-**Objectives**
+
+## Objectives
 
 * Load the training, validation and test data sets
 * Explore, summarize and visualize the data set
@@ -21,24 +24,27 @@ The dataset was obtained from the *Institut für Neuroinformatik* from the **Ruh
 
 
 Image data shape = (32, 32, 3)
+
 Number of classes = 43
 
 Number of training examples = 34799
+
 Number of validation samples = 4410
+
 Number of testing samples = 12630
 
 ### Exploratory visualization
 After loading the data, some of its characteristics of are analyzed. The code is presented in [Traffic sign classifier algorithn](https://github.com/toshiharutf/CarND-Term1-Traffic_sign_classifier_P2/blob/master/Traffic_Sign_Classifier.ipynb).
 First, the number of occurrences for each of the 43 traffic sign classes is shown in a bar graph plot. It can be seen that the number of samples per class presents a high variance, which may lead to higher accuracies for some traffic sign classes over the others.
 
-Then, the top least common traffic signs occurrances are shown, so the user can predict in which type of classes the classifier may have some problems.
+Then, the top least common traffic signs occurrances are shown, so the user can predict in which classes, the classifier may present problems.
 
 Finally, all the 43 classes are shown, in order of label from 0 to 43.
 
 ### Preprocessing
-A simple division over 255 for all the three layers (RGB) of each of the images is made. Other normalizations methos were tested (histogram equaliation), but showed poorer results than the division by 255. Posibly, the equalization was not correctly implemented. However, up to 96% accuracy in the validation test was reached, wich shows that this simple normalization work just fine.
+A simple division over 255 for all the three layers (RGB) of each of the images is made. Other normalizations methods were tested (histogram equalization), but showed poorer results than the division by 255. Possibly, the equalization was not correctly implemented. However, up to 96% accuracy in the validation test was reached, which shows that this simple normalization work just fine.
 
-Also, the images were not greyscaled, because color is an important feature in the traffic signs recognition.
+Also, the images were **NOT** greyscaled, because **color is an important feature** in the traffic signs recognition.
 
 [0 ~ 255]  -->  [0 ~ 1]
 
@@ -47,8 +53,8 @@ The deep learning net was based on the LeNet network presented in the course.
 The network layers are the following:
 
 **1) Convolutional**
-Input : 32x32x2
-Output: 29x29x6
+	Input : 32x32x2
+	Output: 29x29x6
 
 **ReLU activation**
 
@@ -95,7 +101,7 @@ Output: 43
 The weights were obtained using the Adam optimizer function within Tensorflow.
 The learning rate chosen was 0.001.
 Dropout rate for training: 50%
-An EPOCHS of 10 and BATCH of 128 showed good results. Increasing the EPOCHS did not results in higher accuracies, and in fact, tended to overfit the model. Increasing the batch reduced the perfomance of the model.
+An EPOCHS of 10 and BATCH of 128 showed good results. Increasing the EPOCHS did not increase the accuracy, and in fact, tended to overfit the model. Increasing the batch reduced the perfomance of the model.
 
 ### Solution approach
 With the hyperparameters and network structure shown above, accuracies up to 99.5% in the training and 96% in the validation set were reached.
@@ -103,7 +109,7 @@ In the test set, up to 94% was reached.
 
 ### Acquiring new images
 Six new images were acquired from the web. Five of them were randomly chosen within the 43 classes of images, and one of them was selected from within the top 5 least common samples.
-From the first five images, some of them were particurly chosen, because they may be a more challenging to the net. For example, the stop sign is slightly rotated, and the keep left sign is a translucent and backlighted.
+For the first five images, some of them were particurly chosen, because they could represent more challenge to the network. For example, the stop sign is slightly rotated, and the keep left sign is translucent and backlighted.
 The six images are shown here, after cropping an resizing
 
 **Challenge image**
@@ -112,11 +118,17 @@ The six images are shown here, after cropping an resizing
 
 **Randomly chosen images**
 
-<img src="./images/14stop_2.jpg" width="150">
+<img src="./images/14stop_2.jpg" width="150"> 
+(*Notice the rotation*)
+
 <img src="./images/18caution_2.jpg" width="150">
+
 <img src="./images/19curve_left_2.jpg" width="150">
+
 <img src="./images/27pedestrian_2.jpg" width="150">
+
 <img src="./images/39keep_left_2.jpg" width="150">
+(*This photo was taken from a translucent backlighted sign at night*)
 
 
 
@@ -125,7 +137,7 @@ The classifier reached 83.3 % accuracy, which represents 5 out of 6 images.
 
 By analyzing the softmax probabilities, it can be seen that **challenge image**, the *Speed limit sign 20*, was incorrectly classified as *Speed limit sign 30* - tag="1" (shown below).
 This result is not that surprising, since both images look very similar. Since there are only few examples for this particular sign class, a poorer performance was expected. 
-Notice from the softmax probabilities, that the second most probable sign was the correct one (tag = "0"). However, the probability for this label reached only 61%, which is lower compared to the other correctly labeled signs, so a **low recall for the speed limit 20 ** sign is expected.  
+Notice from the softmax probabilities, that the *most probable* class only reached 61%, compared to the other correctly labeled signs which reached over 90% probability. The second most probable option was actually the correct one (tag = "0") and reached a 38% probability. From these results, a **low recall for the speed limit 20** is expected, and probably also for the other top least common examples.
 
 All the other images present a softmax probability higher than 90%, which suggest a high recall for their sign classes.
 
@@ -160,7 +172,7 @@ indices=array(
  ]
 
 ### Visualization of the hidden layers
-The provided function for observing the hidden layer was used for the two convolutional layers of the network. The fully connected layers were not visualized, since the could not recreate a square figured.
+The provided function for observing the hidden layer was used for two convolutional layers of the network. The fully connected layers were not visualized, since the could not recreate a square figured.
 For the first convolutional layer, the visualization showed the contours of the image, very similar to the output of the Canny edge detection algorithm. 
 
 <img src="./images/conv1.png" >
